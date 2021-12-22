@@ -1,7 +1,7 @@
 import json
 import os
 
-path = "/var/python/docker_inspect_parser"
+path = os.environ['DIP_HOME']
 os.chdir(path)
 
 json_file = "template.json"
