@@ -6,5 +6,5 @@ dip() {
         rm $script_loc/template.json ;
 }
 
-export -f dip' >> ~/.bashrc
-source ~/.bashrc
+export -f dip' >> ~/.bashrc;
+source ~/.bashrc;
