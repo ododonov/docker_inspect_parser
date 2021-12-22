@@ -1,11 +1,10 @@
 import json
 import os
 
-path = "C:\\!Work\\dev\\python\\docker_inspect_parser"
+path = "/var/python/docker_inspect_parser"
 os.chdir(path)
 
-#json_file = "template.json"
-json_file = input()
+json_file = "template.json"
 with open(json_file, "r") as read_file:
     data = json.load(read_file)[0]
 
