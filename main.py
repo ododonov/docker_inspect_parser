@@ -21,8 +21,15 @@ ports = host_config["PortBindings"]
 
 ## Container config
 container_config = data["Config"]
+#Image
 container_image = container_config["Image"]
+#Environment
 envs = container_config["Env"]
+
+## Networks
+network_settings = data["NetworkSettings"]
+networks = network_settings["Networks"]
+
 
 ## Print information
 if(container_state["Running"]):
@@ -35,7 +42,7 @@ else:
     container_status_color = '\033[0m'
 print('-----')
 print('Name:', container_name)
-print('Image', container_image)
+print('Image:', container_image)
 print('Created at', create_date)
 print('Status:', container_status_color + container_status, '\033[0m')
 print('-----')
@@ -47,6 +54,9 @@ for i in ports:
     container_port = i
     host_port = ports[i][0]["HostIp"] + ':' + ports[i][0]["HostPort"]
     print('- ', container_port, ' : ', host_port)
+print('Networks:')
+for i in networks:
+    print('- ', i)
 print('Environment:')
 for i in range(len(envs)):
     print('- ', envs[i])
