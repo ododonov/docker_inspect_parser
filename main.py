@@ -15,14 +15,13 @@ container_name = data["Name"]
 
 ## Host config
 host_config = data["HostConfig"]
-container_image = host_config["Config"]["image"]
-
 #Volumes and ports
 binds = host_config["Binds"]
 ports = host_config["PortBindings"]
 
 ## Container config
 container_config = data["Config"]
+container_image = container_config["Image"]
 envs = container_config["Env"]
 
 ## Print information
