@@ -16,8 +16,14 @@ container_name = data["Name"]
 ## Host config
 host_config = data["HostConfig"]
 #Volumes and ports
-binds = host_config["Binds"]
-ports = host_config["PortBindings"]
+try:
+    binds = host_config["Binds"]
+except:
+    binds = []
+try:
+    ports = host_config["PortBindings"]
+except:
+    ports = []
 
 ## Container config
 container_config = data["Config"]
@@ -41,7 +47,7 @@ elif(container_state["Restarting"]):
 else:
     container_status_color = '\033[0m'
 print('-----')
-print('Name:', container_name)
+print('Name:', container_name[1:])
 print('Image:', container_image)
 print('Created at', create_date)
 print('Status:', container_status_color + container_status, '\033[0m')
