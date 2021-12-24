@@ -52,9 +52,10 @@ print('Image:', container_image)
 print('Created at', create_date)
 print('Status:', container_status_color + container_status, '\033[0m')
 print('-----')
-print('Volumes:')
-for i in range(len(binds)):
-    print('- ', binds[i])
+if(len(binds)>0):
+    print('Volumes:')
+    for i in range(len(binds)):
+        print('- ', binds[i])
 print('Ports:')
 for i in ports:
     container_port = i
