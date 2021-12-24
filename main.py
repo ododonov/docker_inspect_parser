@@ -5,8 +5,8 @@ path = os.environ['DIP_HOME']
 os.chdir(path)
 
 json_file = "template.json"
-with open(json_file, "r") as read_file:
-    data = json.load(read_file)[0]
+read_file = os.environ['DIP_RESULT']
+data = json.load(read_file)[0]
 
 #General info about container
 create_date = data["Created"]
