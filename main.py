@@ -30,7 +30,10 @@ container_config = data["Config"]
 #Image
 container_image = container_config["Image"]
 #Environment
-envs = container_config["Env"]
+if "Env" in container_config:
+    envs = container_config["Env"]
+else:
+    envs = None
 
 ## Networks
 network_settings = data["NetworkSettings"]
@@ -46,24 +49,36 @@ elif(container_state["Restarting"]):
     container_status_color = '\033[93m'
 else:
     container_status_color = '\033[0m'
-print('-----')
 print('Name:', container_name[1:])
 print('Image:', container_image)
 print('Created at', create_date)
 print('Status:', container_status_color + container_status, '\033[0m')
+
 print('-----')
+
 if(binds):
     print('Volumes:')
     for i in range(len(binds)):
         print('- ', binds[i])
-print('Ports:')
-for i in ports:
-    container_port = i
-    host_port = ports[i][0]["HostIp"] + ':' + ports[i][0]["HostPort"]
-    print('- ', container_port, ' : ', host_port)
+else:
+    print('Volumes: none')
+
+if(ports):
+    print('Ports:')
+    for i in ports:
+        container_port = i
+        host_port = ports[i][0]["HostIp"] + ':' + ports[i][0]["HostPort"]
+        print('- ', container_port, ' : ', host_port)
+else:
+    print('Ports: none')
+
 print('Networks:')
 for i in networks:
     print('- ', i)
-print('Environment:')
-for i in range(len(envs)):
-    print('- ', envs[i])
+
+if(envs):
+    print('Environment:')
+    for i in range(len(envs)):
+        print('- ', envs[i])
+else:
+    print('Environment: none')
