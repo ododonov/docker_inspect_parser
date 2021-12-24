@@ -149,16 +149,16 @@
         "Mounts": [
             {
                 "Type": "bind",
-                "Source": "/var/stand",
-                "Destination": "/var/www",
+                "Source": "/data/stand-server",
+                "Destination": "/etc/nginx",
                 "Mode": "",
                 "RW": true,
                 "Propagation": "rprivate"
             },
             {
                 "Type": "bind",
-                "Source": "/data/stand-server",
-                "Destination": "/etc/nginx",
+                "Source": "/var/stand",
+                "Destination": "/var/www",
                 "Mode": "",
                 "RW": true,
                 "Propagation": "rprivate"
