@@ -16,14 +16,14 @@ container_name = data["Name"]
 ## Host config
 host_config = data["HostConfig"]
 #Volumes and ports
-try:
+if "Binds" in host_config:
     binds = host_config["Binds"]
-except:
-    binds = []
-try:
+else:
+    binds = None
+if "PortBindings" in host_config:
     ports = host_config["PortBindings"]
-except:
-    ports = []
+else:
+    ports = None
 
 ## Container config
 container_config = data["Config"]
@@ -52,7 +52,7 @@ print('Image:', container_image)
 print('Created at', create_date)
 print('Status:', container_status_color + container_status, '\033[0m')
 print('-----')
-if(len(binds)>0):
+if(binds):
     print('Volumes:')
     for i in range(len(binds)):
         print('- ', binds[i])
