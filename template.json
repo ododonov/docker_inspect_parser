@@ -1,13 +1,9 @@
 [
     {
-        "Id": "169014c5cfd69878f683a7d0b8e3d9c721578953d642bb6c781898b9d4be7659",
-        "Created": "2021-12-06T09:49:58.895676968Z",
-        "Path": "/docker-entrypoint.sh",
-        "Args": [
-            "nginx",
-            "-g",
-            "daemon off;"
-        ],
+        "Id": "f2fa4880bb776e64d51b36893c2e4922e3db6ca972073c4c16af73c0fa45a3a6",
+        "Created": "2021-12-20T05:55:26.321658447Z",
+        "Path": "/run.sh",
+        "Args": [],
         "State": {
             "Status": "running",
             "Running": true,
@@ -15,18 +11,18 @@
             "Restarting": false,
             "OOMKilled": false,
             "Dead": false,
-            "Pid": 744140,
+            "Pid": 2876015,
             "ExitCode": 0,
             "Error": "",
-            "StartedAt": "2021-12-06T10:08:30.45588591Z",
-            "FinishedAt": "2021-12-06T10:08:29.531650268Z"
+            "StartedAt": "2021-12-20T10:22:52.922828903Z",
+            "FinishedAt": "2021-12-20T10:22:50.70539172Z"
         },
-        "Image": "sha256:f652ca386ed135a4cbe356333e08ef0816f81b2ac8d0619af01e2b256837ed3e",
-        "ResolvConfPath": "/var/lib/docker/containers/169014c5cfd69878f683a7d0b8e3d9c721578953d642bb6c781898b9d4be7659/resolv.conf",
-        "HostnamePath": "/var/lib/docker/containers/169014c5cfd69878f683a7d0b8e3d9c721578953d642bb6c781898b9d4be7659/hostname",
-        "HostsPath": "/var/lib/docker/containers/169014c5cfd69878f683a7d0b8e3d9c721578953d642bb6c781898b9d4be7659/hosts",
-        "LogPath": "/var/lib/docker/containers/169014c5cfd69878f683a7d0b8e3d9c721578953d642bb6c781898b9d4be7659/169014c5cfd69878f683a7d0b8e3d9c721578953d642bb6c781898b9d4be7659-json.log",
-        "Name": "/stand-server",
+        "Image": "sha256:9b957e098315598ae58c7a62bcc140ed086bbe619b38c31a52b21abbd5eb21e2",
+        "ResolvConfPath": "/var/lib/docker/containers/f2fa4880bb776e64d51b36893c2e4922e3db6ca972073c4c16af73c0fa45a3a6/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/f2fa4880bb776e64d51b36893c2e4922e3db6ca972073c4c16af73c0fa45a3a6/hostname",
+        "HostsPath": "/var/lib/docker/containers/f2fa4880bb776e64d51b36893c2e4922e3db6ca972073c4c16af73c0fa45a3a6/hosts",
+        "LogPath": "/var/lib/docker/containers/f2fa4880bb776e64d51b36893c2e4922e3db6ca972073c4c16af73c0fa45a3a6/f2fa4880bb776e64d51b36893c2e4922e3db6ca972073c4c16af73c0fa45a3a6-json.log",
+        "Name": "/grafana",
         "RestartCount": 0,
         "Driver": "overlay2",
         "Platform": "linux",
@@ -36,8 +32,8 @@
         "ExecIDs": null,
         "HostConfig": {
             "Binds": [
-                "/var/stand:/var/www",
-                "/data/stand-server:/etc/nginx"
+                "/data/grafana/etc/:/etc/grafana:rw",
+                "/data/grafana/var/:/var/lib/grafana:rw"
             ],
             "ContainerIDFile": "",
             "LogConfig": {
@@ -46,15 +42,15 @@
             },
             "NetworkMode": "default",
             "PortBindings": {
-                "80/tcp": [
+                "3000/tcp": [
                     {
-                        "HostIp": "",
-                        "HostPort": "8181"
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "3000"
                     }
                 ]
             },
             "RestartPolicy": {
-                "Name": "no",
+                "Name": "unless-stopped",
                 "MaximumRetryCount": 0
             },
             "AutoRemove": false,
@@ -63,9 +59,9 @@
             "CapAdd": null,
             "CapDrop": null,
             "CgroupnsMode": "host",
-            "Dns": [],
-            "DnsOptions": [],
-            "DnsSearch": [],
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
             "ExtraHosts": null,
             "GroupAdd": null,
             "IpcMode": "private",
@@ -91,7 +87,7 @@
             "NanoCpus": 0,
             "CgroupParent": "",
             "BlkioWeight": 0,
-            "BlkioWeightDevice": [],
+            "BlkioWeightDevice": null,
             "BlkioDeviceReadBps": null,
             "BlkioDeviceWriteBps": null,
             "BlkioDeviceReadIOps": null,
@@ -102,7 +98,7 @@
             "CpuRealtimeRuntime": 0,
             "CpusetCpus": "",
             "CpusetMems": "",
-            "Devices": [],
+            "Devices": null,
             "DeviceCgroupRules": null,
             "DeviceRequests": null,
             "KernelMemory": 0,
@@ -139,106 +135,103 @@
         },
         "GraphDriver": {
             "Data": {
-                "LowerDir": "/var/lib/docker/overlay2/ad10b5be360db2c0552c2a3204218551c5ca39919060e2ac0a40f8dfe23ed2e4-init/diff:/var/lib/docker/overlay2/b865be79d4c8a770478d50f7f9f5a2883b20f01abb76be02743f2ffb6410c140/diff:/var/lib/docker/overlay2/8ed069dc77f6f7ee2b993a5a6c02a2794fffa59d87bd0be5ed2b44d049e13954/diff:/var/lib/docker/overlay2/4b617168ebfdc5cbf80c744d7e8294610270498f3819ac5842be905d45655f35/diff:/var/lib/docker/overlay2/3dec3309c01c2d87cfafd28c0a935639da31cb3b965aedbbb8fc40420ba9c8ce/diff:/var/lib/docker/overlay2/27b8610edd7b4430c1429301e1dad2eee76cb0cc1293259b4091a0c09066b20e/diff:/var/lib/docker/overlay2/3884f08d8c01cf1e6015620735afafc6e81f4152ebab5439c9a3f2c9f8bdbdd4/diff",
-                "MergedDir": "/var/lib/docker/overlay2/ad10b5be360db2c0552c2a3204218551c5ca39919060e2ac0a40f8dfe23ed2e4/merged",
-                "UpperDir": "/var/lib/docker/overlay2/ad10b5be360db2c0552c2a3204218551c5ca39919060e2ac0a40f8dfe23ed2e4/diff",
-                "WorkDir": "/var/lib/docker/overlay2/ad10b5be360db2c0552c2a3204218551c5ca39919060e2ac0a40f8dfe23ed2e4/work"
+                "LowerDir": "/var/lib/docker/overlay2/3341cfa5d138fa24998d7361b56f13627152ad820d2db0f164b2b4da67c1a787-init/diff:/var/lib/docker/overlay2/d3450979f5f1ed816565c1131be64e4814b8a36526abb7e8bbd31b1836a9a1af/diff:/var/lib/docker/overlay2/1356c20ee46b0d6c4873645bcda603e35e44b9e9f780e3000c5076d8a6f55614/diff:/var/lib/docker/overlay2/562846d4cb37c9e1b699c830caa703bb2f05f7b7d103da8192c1b56db6e25e22/diff:/var/lib/docker/overlay2/b9c3bfaa4b8b98e5df50e8aa4b091dab01ef0a46001a8e946edcbf54def82acc/diff:/var/lib/docker/overlay2/3ef0f708b893f42d9b29b09dade45a11f62b41b8cc3f12dfc612adab34a8b07e/diff:/var/lib/docker/overlay2/fcee852e7d323fbcf86193cc8db7d4c8d8e54b7daaf6ebd122b0300277296e2e/diff:/var/lib/docker/overlay2/81972e9d1d30c685a2b60e9aec21fe2b7ef5936f8c52d1be830547eafaf4fa40/diff:/var/lib/docker/overlay2/1df1014d2939f4a4d4611dea8a7a32acb6c6286c77ba498d9f2b229c47b545c4/diff:/var/lib/docker/overlay2/c39cebe239281c0efeab8cb93504363c1d6f028f9be5e5f4c4bc4089e51b4b98/diff:/var/lib/docker/overlay2/10ee2a6301c8a7617db9e352b828ed095a76a3312edae1ccef480bfd83da6810/diff",
+                "MergedDir": "/var/lib/docker/overlay2/3341cfa5d138fa24998d7361b56f13627152ad820d2db0f164b2b4da67c1a787/merged",
+                "UpperDir": "/var/lib/docker/overlay2/3341cfa5d138fa24998d7361b56f13627152ad820d2db0f164b2b4da67c1a787/diff",
+                "WorkDir": "/var/lib/docker/overlay2/3341cfa5d138fa24998d7361b56f13627152ad820d2db0f164b2b4da67c1a787/work"
             },
             "Name": "overlay2"
         },
         "Mounts": [
             {
                 "Type": "bind",
-                "Source": "/data/stand-server",
-                "Destination": "/etc/nginx",
-                "Mode": "",
+                "Source": "/data/grafana/etc",
+                "Destination": "/etc/grafana",
+                "Mode": "rw",
                 "RW": true,
                 "Propagation": "rprivate"
             },
             {
                 "Type": "bind",
-                "Source": "/var/stand",
-                "Destination": "/var/www",
-                "Mode": "",
+                "Source": "/data/grafana/var",
+                "Destination": "/var/lib/grafana",
+                "Mode": "rw",
                 "RW": true,
                 "Propagation": "rprivate"
             }
         ],
         "Config": {
-            "Hostname": "169014c5cfd6",
+            "Hostname": "f2fa4880bb77",
             "Domainname": "",
-            "User": "",
+            "User": "472",
             "AttachStdin": false,
-            "AttachStdout": false,
-            "AttachStderr": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
             "ExposedPorts": {
-                "80/tcp": {}
+                "3000/tcp": {}
             },
             "Tty": false,
             "OpenStdin": false,
             "StdinOnce": false,
             "Env": [
-                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-                "NGINX_VERSION=1.21.4",
-                "NJS_VERSION=0.7.0",
-                "PKG_RELEASE=1~bullseye"
+                "GF_INSTALL_PLUGINS=aceiot-svg-panel",
+                "PATH=/usr/share/grafana/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GF_PATHS_CONFIG=/etc/grafana/grafana.ini",
+                "GF_PATHS_DATA=/var/lib/grafana",
+                "GF_PATHS_HOME=/usr/share/grafana",
+                "GF_PATHS_LOGS=/var/log/grafana",
+                "GF_PATHS_PLUGINS=/var/lib/grafana/plugins",
+                "GF_PATHS_PROVISIONING=/etc/grafana/provisioning"
             ],
-            "Cmd": [
-                "nginx",
-                "-g",
-                "daemon off;"
-            ],
-            "Image": "nginx",
+            "Cmd": null,
+            "Image": "grafana/grafana",
             "Volumes": null,
-            "WorkingDir": "",
+            "WorkingDir": "/usr/share/grafana",
             "Entrypoint": [
-                "/docker-entrypoint.sh"
+                "/run.sh"
             ],
             "OnBuild": null,
-            "Labels": {
-                "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
-            },
-            "StopSignal": "SIGQUIT"
+            "Labels": {}
         },
         "NetworkSettings": {
             "Bridge": "",
-            "SandboxID": "72ba38f714128270a11b2a22452d5db1fd80269999fa48e819191124d7971d54",
+            "SandboxID": "86f9219a2a48e4c12e9020ed9c35f6898dc54c593f4fa6a4faacac630726ec0c",
             "HairpinMode": false,
             "LinkLocalIPv6Address": "",
             "LinkLocalIPv6PrefixLen": 0,
             "Ports": {
-                "80/tcp": [
+                "3000/tcp": [
                     {
                         "HostIp": "0.0.0.0",
-                        "HostPort": "8181"
+                        "HostPort": "3000"
                     }
                 ]
             },
-            "SandboxKey": "/var/run/docker/netns/72ba38f71412",
+            "SandboxKey": "/var/run/docker/netns/86f9219a2a48",
             "SecondaryIPAddresses": null,
             "SecondaryIPv6Addresses": null,
-            "EndpointID": "3d1730ba1649e589e66df5324409df1cbe8cb21562b7f17fd14f2232caea88a0",
+            "EndpointID": "126c038691df6aa5d8621e9188412a02e46c18ae6a6ba9e777a54db3a9bee91d",
             "Gateway": "172.17.0.1",
             "GlobalIPv6Address": "",
             "GlobalIPv6PrefixLen": 0,
-            "IPAddress": "172.17.0.6",
+            "IPAddress": "172.17.0.5",
             "IPPrefixLen": 16,
             "IPv6Gateway": "",
-            "MacAddress": "02:42:ac:11:00:06",
+            "MacAddress": "02:42:ac:11:00:05",
             "Networks": {
                 "bridge": {
                     "IPAMConfig": null,
                     "Links": null,
                     "Aliases": null,
-                    "NetworkID": "4492edc0160910d190c4a938cf28d8b460835abff05435305d2d9b5d311973cb",
-                    "EndpointID": "3d1730ba1649e589e66df5324409df1cbe8cb21562b7f17fd14f2232caea88a0",
+                    "NetworkID": "a75de9704eb94e519c587602a3f2f252890b01f7fe942ae233f85f2936b72750",
+                    "EndpointID": "126c038691df6aa5d8621e9188412a02e46c18ae6a6ba9e777a54db3a9bee91d",
                     "Gateway": "172.17.0.1",
-                    "IPAddress": "172.17.0.6",
+                    "IPAddress": "172.17.0.5",
                     "IPPrefixLen": 16,
                     "IPv6Gateway": "",
                     "GlobalIPv6Address": "",
                     "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:11:00:06",
+                    "MacAddress": "02:42:ac:11:00:05",
                     "DriverOpts": null
                 }
             }
