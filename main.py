@@ -48,7 +48,7 @@ elif(container_state["Paused"]):
     container_status_color = str_style.cyan
 elif(container_state["Restarting"]):
     container_status_color = str_style.yellow
-elif(container_state["Exited"]):
+elif(container_state["exited"]):
     container_status_color = str_style.red
 else:
     container_status_color = str_style.gray
