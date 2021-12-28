@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import date
 from str_style import str_style
 
 path = os.environ['DIP_HOME']
@@ -11,7 +12,7 @@ data = json.loads(json_file)[0]
 ## General info about container
 container_state = data["State"]
 container_status = container_state["Status"]
-create_date = data["Created"]
+create_date = date.strftime(date.fromisoformat(data["Created"]), '%d %b %Y')
 container_name = data["Name"]
 
 ## Host config
