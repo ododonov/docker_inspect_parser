@@ -60,18 +60,18 @@ print('Status:', container_status_color + container_status, str_style.gray)
 print('-----')
 
 if(binds):
-    print('Volumes (H:C):')
+    print('Volumes (h:c):')
     for i in range(len(binds)):
         print('- ', binds[i])
 else:
     print('Volumes: none')
 
 if(ports):
-    print('Ports (H:C):')
+    print('Ports (h->c):')
     for i in ports:
         container_port = i
         host_port = ports[i][0]["HostPort"]
-        print('- ', host_port, ':', container_port)
+        print('- ', str(host_port) + '->' + str(container_port))
 else:
     print('Ports: none')
 
