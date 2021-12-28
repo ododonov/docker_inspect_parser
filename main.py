@@ -1,5 +1,6 @@
 import json
 import os
+from str_style import str_style
 
 path = os.environ['DIP_HOME']
 os.chdir(path)
@@ -42,17 +43,19 @@ networks = network_settings["Networks"]
 
 ## Print information
 if(container_state["Running"]):
-    container_status_color = '\033[92m'
+    container_status_color = str_style.green
 elif(container_state["Paused"]):
-    container_status_color = '\033[91m'
+    container_status_color = str_style.cyan
 elif(container_state["Restarting"]):
-    container_status_color = '\033[93m'
+    container_status_color = str_style.yellow
+elif(container_state["Exited"]):
+    container_status_color = str_style.red
 else:
-    container_status_color = '\033[0m'
+    container_status_color = str_style.gray
 print('Name:', container_name[1:])
 print('Image:', container_image)
 print('Created at', create_date)
-print('Status:', container_status_color + container_status, '\033[0m')
+print('Status:', container_status_color + container_status, str_style.gray)
 
 print('-----')
 
