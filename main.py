@@ -12,7 +12,7 @@ data = json.loads(json_file)[0]
 ## General info about container
 container_state = data["State"]
 container_status = container_state["Status"]
-create_date = date.strftime(date.fromisoformat(data["Created"]), '%d %b %Y')
+create_date = date.strftime(date.fromisoformat(data["Created"][:10]), '%d %b %Y')
 container_name = data["Name"]
 
 ## Host config
